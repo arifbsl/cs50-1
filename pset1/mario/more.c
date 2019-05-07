@@ -4,43 +4,44 @@
 
 int main(void)
 {
-    int height = 0, spaces = 0, hashes = 0;
-
+    //listing variable used by program
+    int height, spaces, hashes;
+    
+    //asks user for input and make sure input is valid for use
     do
     {
-        height = get_int ("Height: ");
+        height = get_int("Height: ");
     }
-    while (height < 0 || height > 23);
-
-
+    while (height <= 0 || height > 8);
+    
+    //makes pyramid line by line
     for (int i = 0; i < height; i++)
     {
-        for (spaces = (height - i); spaces > 0; spaces--)
+        //makes first of half of pyramid
+        for (spaces = (height - i); spaces > 1; spaces--)
         {
             printf(" ");
         }
 
-        for (hashes = 0; hashes < (i+1); hashes++)
+        for (hashes = 0; hashes < (i + 1); hashes++)
         {
             printf("#");
         }
-    
+        
+        //puts two spaces between the halves
         printf("  ");
-
-        for (hashes = 0; hashes < (i+1); hashes++)
+        
+        //makes second half of pyramid
+        for (hashes = 0; hashes < (i + 1); hashes++)
         {
             printf("#");
         }
-
-        for (spaces = (height - i); spaces > 0; spaces--)
-        {
-            printf(" ");
-        }
-
-
+        
+        //goes to the next line
         printf("\n");
 
 
     }
 }
+
 
