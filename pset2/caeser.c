@@ -8,8 +8,8 @@
 int main(int argc, string argv[])
 {
 
-string message;
-int key, n, i;
+string message = NULL;
+int key = 0, n = 0, i = 0;
 
     //checks to see if you they typed in the correct amount of arguments
     if (argc != 2)
