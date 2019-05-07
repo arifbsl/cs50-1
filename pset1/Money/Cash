@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+float Cash;
+int Change = 0, Quarters = 0, Dimes = 0, Nickels = 0, Pennies = 0, Number_of_Coins =0;
+
+do
+{
+    Cash = get_float("Cash given in Dollars to convert to Change in Coins: ");
+}
+while (Cash <= 0);
+
+Change = round(Cash * 100);
+
+Quarters += Change / 25;
+Change %= 25;
+
+Dimes += Change / 10;
+Change %= 10;
+
+Nickels += Change / 5;
+Change %= 5;
+
+Pennies += Change / 1;
+Change %= 1;
+
+Number_of_Coins = Quarters + Dimes + Nickels + Pennies;
+
+printf("You were giving back %i Quarters, %i Dimes, %i Nickels, %i Pennies.\n", Quarters, Dimes, Nickels, Pennies);
+
+printf("You recieved %i coins back.\n", Number_of_Coins);
+}
+
