@@ -3,28 +3,30 @@
 
 int main(void)
 {
-int height;
-int spaces;
-int hashes;
+//lists variables used in this program
+    int height, spaces, hashes;
 
-do
-{
-    height = get_int ("Height: ");
-}
-while (height < 0 || height > 23);
-
-
-for (int i = 0; i < height; i++)
-{
-    for (spaces = (height - i); spaces > 0; spaces--)
+//gets height from user for program
+    do
     {
-        printf(" ");
+        height = get_int("Height: ");
     }
+    while (height <= 0 || height > 8);
 
-    for (hashes = 0; hashes <= (i+1); hashes++)
+//creates the pyramid
+    for (int i = 0; i < height; i++)
     {
-        printf("#");
+        //puts in spaces
+        for (spaces = (height - i); spaces > 1; spaces--)
+        {
+            printf(" ");
+        }
+    
+        //puts in hashes
+        for (hashes = 0; hashes < (i + 1); hashes++)
+        {
+            printf("#");
+        }
+        printf("\n");
     }
-    printf("\n");
-}
 }
