@@ -37,6 +37,12 @@ int key, n, i;
         // prompts user for the message they want to cipher
         message = get_string ("Please type in the message you would like to encipher: ");
 
+        //prefaces what input and output are
+        {
+          printf("plaintext: %s\n", message);
+          printf("ciphertext: ");
+        }
+        
         for (i = 0, n = strlen(message); i < n ; i++)
         {
             //checks if character is lower case and applies cipher then prints
