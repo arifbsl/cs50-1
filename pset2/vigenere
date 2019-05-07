@@ -42,6 +42,12 @@ int main(int argc, string argv[])
         // prompts user for the message they want to cipher
         message = get_string("Please type in the message you would like to encipher: ");
         
+        //adds context to input and output
+        {
+            printf("plaintext: %s\n", message);
+            printf("ciphertext: ");
+        }
+        
         //applies cipher to message and then prints enciphered message
         for (i = 0, n = strlen(message), j = 0; i < n ; i++)
         {
