@@ -39,8 +39,6 @@ int main(void)
         
         //goes to the next line
         printf("\n");
-
-
     }
 }
 
