@@ -26,6 +26,7 @@ for (int i = 0; i < height; i++)
     {
         printf("#");
     }
+    
     printf("  ");
 
      for (hashes = 0; hashes < (i+1); hashes++)
