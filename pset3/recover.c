@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        fprintf(stderr, "please type in the program followed by the file you'd like recover\n");
+        fprintf(stderr, "please type in the program followed by the jpeg you'd like recover\n");
         return 1;
     }
 
