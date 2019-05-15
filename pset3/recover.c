@@ -2,16 +2,19 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[])
-{
+{   
+    //checks to make sure the number of arguements is correct, sends error to command line if not
     if (argc != 2)
     {
         fprintf(stderr, "please type in the program followed by the jpeg you'd like recover\n");
         return 1;
     }
-
+    
+    //stores input file as a variable
     char *raw_data = argv[1];
-
     FILE *inptr = fopen(raw_data, "r");
+    
+    //makes sure input file contains data. if not sends error to command line
     if (inptr == NULL)
     {
         fprintf(stderr, "%s could not be opened\n", raw_data);
@@ -23,10 +26,10 @@ int main(int argc, char *argv[])
     unsigned char buffer[512];
     int jpeg_found = 0;
 
-
+    //reads the file in 512 byte Blocks
     while (fread(buffer, 512, 1, inptr))
     {
-        // if end of file is reached it'll close the program
+        // if end of file is reached, it'll close the program and folders
         if (feof(inptr) != 0)
         {
             fclose(inptr);
@@ -76,7 +79,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        //writes the jpeg to the file name images
+        //writes the jpeg to the file named images. explicitly it copies what's in the buffer to images
         fwrite(buffer, 512, 1, images);
 
     }
