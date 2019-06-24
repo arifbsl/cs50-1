@@ -21,7 +21,7 @@ def main():
         for line in file.readlines():
             BannedWords.add(line.strip())
     
-    # stored length so it would have to calculate it each time through the loop
+    # stored length so it wouldn't have to calculate it each time through the loop
     WordsGiven = message.strip().split()
     LengthOfWordsGiven = len(WordsGiven)
     
