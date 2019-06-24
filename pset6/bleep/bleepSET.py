@@ -20,21 +20,22 @@ def main():
     with open(Dictionary, "r") as file:
         for line in file.readlines():
             BannedWords.add(line.strip())
-
+    
+    # stored length so it wouldn't have to calculate it each time through the loop
     WordsGiven = message.strip().split()
     LengthOfWordsGiven = len(WordsGiven)
-
+    
     # checks given word again banned words and then either prints censored version or the given word
     for givenword in WordsGiven:
         if givenword.lower() in BannedWords:
             print ("*" * len(givenword), end="")
         if givenword.lower() not in BannedWords:
             print (givenword, end="")
-        if givenword == WordsGiven[LengthOfWordsGiven -1]:
+        if givenword == WordsGiven[LengthOfWordsGiven-1]:
             break
         print(" ", end="")
     print()
 
 
 if __name__ == "__main__":
-    main()
+main()
