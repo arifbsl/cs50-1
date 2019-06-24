@@ -1,0 +1,113 @@
+h1 {
+    text-align: center;
+    font-size: 24pt;
+    color: #000099;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+body {
+    background-color: #d6dfdf;
+}
+BoringStatement{
+    text-align: center;
+    font-size: 16pt;
+    color: #bd0000;
+    margin-bottom: 10px;
+    text-decoration: bold;
+}
+
+BoringNumbers{
+    text-align: center;
+    font-size: 16pt;
+    color: #c900d2;
+    margin-bottom: 10px;
+    text-decoration: bold;
+}
+BoringWords{
+    text-align: center;
+    font-size: 16pt;
+    color: #39594b;
+    margin-bottom: 10px;
+    text-decoration: bold;
+}
+table {
+    margin: 10px;
+    width: 610px
+}
+
+.centertable {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.whitetext {
+    color: #ffffff;
+}
+
+.secretbutton{
+    font-size: 2pt;
+    text-align: center;
+    color: #865e7e;
+    text-decoration: bold;
+    position:absolute;
+    top: 97%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-3%);
+}
+.container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.maincontainer {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-70%);
+}
+.bottomcontainer {
+    text-align: center;
+    font-size: 16pt;
+    color: #865e7e;
+    margin-bottom: 10px;
+    text-decoration: bold;
+    position:absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-25%);
+}
+
+#superorange{
+    color: #fd9c00;
+}
+
+#superpink{
+    color:#f5208c;
+}
+#royalpurple{
+    color: #7b06c1;
+}
+#perdancle2{
+    color: #8cabf7;
+}
+#purplegrey{
+    color: #998c9b;
+}
+#dullbrown{
+    color: #7b594b;
+}
+
+th {
+    padding: 3px;
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid #990000;
+    background-color: #ffffcc;
+}
+
