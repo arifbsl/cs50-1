@@ -119,7 +119,6 @@ bool check(const char *word)
             cursor = cursor->next;
         }
     }
-    //increase number of misspel
     return false;
 }
 
