@@ -137,7 +137,7 @@ unsigned int size(void)
 }
 
 
-// Unloads dictionary from memory, returning true if successful else false
+// Unloads dictionary from memory, returning true if successful
 bool unload(void)
 {
     for (int i = 0; i < HASH_TABLE_SIZE; i++)
