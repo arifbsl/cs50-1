@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <p class="normalcenter">{{message}}</p>
+    <div>
+    <table class="table table-hover centertable">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Favorite Pet</th>
+                <th>Robot, Pirate, or Ninjas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for information in final_info %}
+            <tr>
+                <td>{{information[0]}}</td>
+                <td>{{information[1]}}</td>
+                <td>{{information[2]}}</td>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+    </div>
+{% endblock %}

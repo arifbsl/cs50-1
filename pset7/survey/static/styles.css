@@ -1,0 +1,70 @@
+h1 {
+    text-align: center;
+    font-size: 42pt;
+    color: #000099;
+    margin-bottom: 10px;
+    text-decoration: bold;
+}
+
+.namesurvey {
+    margin: 0;
+    position: absolute;
+    color: #3B83BA;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-70%);
+}
+
+.petsurvey {
+    margin: 0;
+    font-size: 16pt;
+    color: #7B518D;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60%);
+}
+
+.favoritesurvey {
+    text-align: center;
+    font-size: 16pt;
+    color: #BA7B3B;
+    margin-bottom: 10px;
+    text-decoration: bold;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.submitsurvey {
+    text-align: center;
+    font-size: 16pt;
+    color: #c900d2;
+    margin-bottom: 10px;
+    text-decoration: bold;
+    position:absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+}
+
+.normalcenter {
+    text-align: center;
+    font-size: 22pt;
+    color: #CE006E;
+    margin-bottom: 10px;
+    text-decoration: bold;
+}
+
+.bigfont {
+    text-decoration: bold;
+    font-size: 32pt;
+}
+
+.centertable {
+    color: #6000CE;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+}

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Survey Form</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post">
+        <div class="namesurvey">
+            <label for="exampleInputEmal1">Name</label>
+            <input name="name" type="text" id="exampleInputEmal1" class="form-control" placeholder="Enter Name">
+        </div>
+        
+        <div class="petsurvey">
+            <p>
+                Select your favorite pet:
+            </p>
+            
+            <label><input class="form-check form-check-inline" name="pets" type= "radio" value="dogs" required>Dogs</label>
+            <label><input class="form-check form-check-inline" name="pets" type= "radio" value="cats" required>Cats</label>
+            <label><input class="form-check form-check-inline" name="pets" type= "radio" value="bunnies" required>Bunnies</label>
+            <label><input class="form-check form-check-inline" name="pets" type= "radio" value="snakes" required>Snakes</label>
+            <label><input class="form-check form-check-inline" name="pets" type= "radio" value= "other" required>Other</label>
+        </div>
+        
+        <div class="favoritesurvey" >
+            <p>
+                Robot, Pirates, or Ninjas?
+            </p>
+            
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="favorite" required>
+                <option disabled="" selected="" value="">Please Select One</option>
+                <option value="pirates">Pirates</option>
+                <option value="robots">Robots</option>
+                <option value="ninjas">Ninjas</option>
+            </select>
+        </div>
+        
+        <div class="submitsurvey">
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+        
+    </form>
+
+    <script>
+
+        document.querySelector('form').onsubmit = function() {
+            if (!document.querySelector('input').value) {
+                alert('Please input your name.');
+                return false;
+            }
+            return true;
+        };
+    </script>
+
+{% endblock %}
