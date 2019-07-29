@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Quote
+{% endblock %}
+
+{% block main %}
+       <p class="normalcenter">{{message}}</p>
+    <div>
+    <table class="table table-hover centertable">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Price per Share</th>
+                <th>Stock Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{quote.name}}</td>
+                <td>{{quote.price | usd}}</td>
+                <td>{{quote.symbol}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

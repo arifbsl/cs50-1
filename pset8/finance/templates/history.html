@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+       <p class="normalcenter">{{message}}</p>
+    <div>
+    <table class="table table-hover centertable">
+        <thead class="thead-light">
+            <tr>
+                <th>Stock Symbol</th>
+                <th>Stock Name</th>
+                <th>Number of Stock Bought/Sold</th>
+                <th>Stock Price per Share</th>
+                <th>Date/Time</th>
+                <th>Type of Transaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for data in history%}
+            <tr>
+                <td>{{data["stock_symbol"]}}</td>
+                <td>{{data["stock_name"]}}</td>
+                <td>{{data["number_of_shares"]}}</td>
+                <td>{{data["stock_price"]}}</td>
+                <td>{{data["date_of_transaction"]}}</td>
+                <td>{{data["bought_or_sold"]}}</td>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+    </div>
+{% endblock %}

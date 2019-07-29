@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+       <p class="normalcenter">{{message}}</p>
+    <div>
+    <table class="table table-hover centertable">
+        <thead class="thead-light">
+            <tr>
+                <th>Stock Symbol</th>
+                <th>Stock Name</th>
+                <th>Total Number of Stock</th>
+                <th>Current Stock Price per Share</th>
+                <th>Current Total Stock Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range (length) %}
+            <tr>
+                <td>{{stock[i]["stock_symbol"]}}</td>
+                <td>{{stock[i]["stock_name"]}}</td>
+                <td>{{stock[i]["stock_number"]}}</td>
+                <td>{{current_price[i] | usd}}</td>
+                <td>{{current_total[i] | usd}}</td>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+    <table class="table table-hover centertable">
+        <thead class="thead-dark">
+            <tr>
+                <th>Total Value in Stocks</th>
+                <th>Remaining Funds</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{total | usd}}</td>
+                <td>{{cash_remaining | usd}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
