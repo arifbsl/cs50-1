@@ -46,7 +46,7 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    # stores needed variables from database in a dictionary
+    # stores needed variables from database in a list
     stock = db.execute(
         "SELECT stock_symbol, stock_name, SUM(number_of_shares) as stock_number FROM purchases GROUP BY stock_name HAVING id = :user_id", user_id=session["user_id"])
     cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])
@@ -66,7 +66,8 @@ def index():
 
     # calculates total worth of stocks
     total = sum(current_total)
-
+    
+    # renders portfolio with all relevant info
     return render_template("index.html", current_price=current_price, total=total, stock=stock, current_total=current_total, length=length, cash_remaining=cash[0]["cash"])
 
 
@@ -126,7 +127,7 @@ def check():
 @login_required
 def history():
 
-     # render index
+    # gets info from database and renders history of transactions
     history = db.execute("SELECT * FROM purchases WHERE id = :user_id", user_id=session["user_id"])
 
     return render_template("history.html", history=history, message="Here is a history of your transactions")
@@ -244,7 +245,8 @@ def quote():
         # retrieve and display stock information
         else:
             return render_template("quoted.html", quote=quote)
-
+    
+    # renders quote
     else:
         return render_template("quote.html")
 
