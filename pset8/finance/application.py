@@ -83,7 +83,7 @@ def buy():
         if not share_bought or not number_of_shares_bought or not str(number_of_shares_bought).isdigit() or float(number_of_shares_bought) <= 0 or float(number_of_shares_bought) * 10 % 10 != 0:
             return apology("Please make sure information entered is correct", 400)
 
-        # calculates relevant info
+        # calculates relevant info and gets cash from database
         else:
             stock_price = round((share_bought["price"]), 2)
             stock_cost = (stock_price * int(number_of_shares_bought))
@@ -94,9 +94,8 @@ def buy():
             if cash < stock_cost:
                 return apology("Not enough funds for transaction", 400)
 
-            # updates database
             else:
-                # update database
+                # updates database
                 db.execute("UPDATE users SET cash = cash - :stock_cost WHERE id = :user_id",
                            stock_cost=stock_cost,  user_id=session["user_id"])
                 db.execute("INSERT INTO purchases (id, stock_name, stock_symbol, number_of_shares, stock_price, date_of_transaction, bought_or_sold) VALUES (:user_id, :stock_name, :stock_symbol, :number_of_shares_bought, :stock_price, :date_of_transaction, :bought_or_sold)",
@@ -112,10 +111,11 @@ def buy():
 @app.route("/check", methods=["GET"])
 def check():
     """Return true if username available, else false, in JSON format"""
-    # gets username via get
+    # gets username via get query
     username = request.args.get("username")
-    data_containing_username = db.execute("SELECT username FROM users WHERE username = :username", username=username)
+    
     # checks to see if username is taken and is appropriate length
+    data_containing_username = db.execute("SELECT username FROM users WHERE username = :username", username=username)
     if data_containing_username == [] and len(username) > 0:
         return jsonify(True)
     else:
@@ -151,12 +151,14 @@ def change_password():
          # Ensure password was submitted
         elif not request.form.get("current_password"):
             return apology("must provide current password", 407)
-
+        
+        # makes sure password and confirmation match
         elif request.form.get("new_password_confirmation") != request.form.get("new_password"):
             return apology("make sure new password and confirmation match", 403)
 
         # Query database for old hash
         else:
+            # gets hash attached to user from database
             database_hash = db.execute("SELECT hash FROM users WHERE id = :user_id", user_id=session["user_id"])
 
             # checks to see if old password is correct
@@ -234,7 +236,8 @@ def quote():
 
         # get info from user
         quote = lookup(request.form.get("symbol"))
-
+        
+        # if stock symbol does not exist returns error
         if not quote:
             return apology("Please make sure stock symbol is corret", 400)
 
@@ -262,9 +265,10 @@ def register():
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("passwords do not match")
 
-        # insert data into table
+        # generates hash from password
         hash = generate_password_hash(request.form.get("password"))
-
+        
+        # updates database with username and password stored as a hash
         user_info = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",
                                username=request.form.get("username"), hash=hash)
 
@@ -288,13 +292,16 @@ def register():
 @login_required
 def add_funds():
     """Adds funds to portfolio"""
-
+    
     if request.method == "POST":
+        # gets info from form
         cash_added = request.form.get("add_funds")
-
+        
+        # makes sure input from form is valid
         if not cash_added or not str(cash_added).isdigit() or float(cash_added) <= 0 or float(cash_added) * 100 % 10 != 0:
             return apology("Please make sure cash is entered as USD", 400)
-
+        
+        # updates database after cash is added
         db.execute("UPDATE users SET cash = cash + :cash_added WHERE id = :user_id",
                    cash_added=cash_added,  user_id=session["user_id"])
 
@@ -312,21 +319,27 @@ def sell():
         "SELECT stock_symbol, stock_name, SUM(number_of_shares) as stock_number FROM purchases GROUP BY stock_name HAVING id = :user_id", user_id=session["user_id"])
 
     if request.method == "POST":
+        # gets relevant info from form
         share_sold = lookup(request.form.get("symbol"))
         number_of_shares_sold = (request.form.get("shares"))
-
+        
+        # makes sure input is valid
         if not share_sold or not number_of_shares_sold or not str(number_of_shares_sold).isdigit() or float(number_of_shares_sold) <= 0 or float(number_of_shares_sold) * 10 % 10 != 0:
             return apology("Please make sure information entered is correct", 400)
-
         number_of_shares_sold = int(number_of_shares_sold)
+        
+        # gets info from database
         stock_available = db.execute("SELECT SUM(number_of_shares) as stock_number_available FROM purchases WHERE id = :user_id AND stock_name = :share",
                                      user_id=session["user_id"], share=share_sold["name"])
-
+        
+        # checks to make sure you have enough stock for the transaction
         if number_of_shares_sold > stock_available[0]["stock_number_available"]:
             return apology("Not enough stock", 400)
-
+        
+        # calculates your revenue
         revenue_from_sale = number_of_shares_sold * share_sold["price"]
-
+        
+        # updates database after transaction
         db.execute("UPDATE users SET cash = cash + :revenue WHERE id = :user_id",
                    revenue=revenue_from_sale,  user_id=session["user_id"])
         db.execute("INSERT INTO purchases (id, stock_name, stock_symbol, number_of_shares, stock_price, date_of_transaction, bought_or_sold) VALUES (:user_id, :stock_name, :stock_symbol, :number_of_shares_sold, :stock_price, :date_of_transaction, :bought_or_sold)",
