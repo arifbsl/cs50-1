@@ -150,7 +150,7 @@ def change_password():
 
          # Ensure password was submitted
         elif not request.form.get("current_password"):
-            return apology("must provide current password", 406)
+            return apology("must provide current password", 407)
 
         elif request.form.get("new_password_confirmation") != request.form.get("new_password"):
             return apology("make sure new password and confirmation match", 403)
@@ -201,7 +201,7 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return apology("invalid username and/or password", 404)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
