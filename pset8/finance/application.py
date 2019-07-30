@@ -300,7 +300,7 @@ def add_funds():
         cash_added = request.form.get("add_funds")
         
         # makes sure input from form is valid
-        if not cash_added or not str(cash_added).isdigit() or float(cash_added) <= 0 or float(cash_added) * 100 % 10 != 0:
+        if not cash_added or not str(cash_added).isdigit() or float(cash_added) <= 0 or float(cash_added) * 1000 % 10 != 0:
             return apology("Please make sure cash is entered as USD", 400)
         
         # updates database after cash is added
