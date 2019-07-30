@@ -2,8 +2,7 @@ import cs50
 
 # gets height from user and makes sure it is within bounds
 while True:
-    print("Enter height of the half pyramid (please pick a number between 1 and 8)")
-    Height = cs50.get_int()
+    Height = cs50.get_int("Enter height of the half pyramid (please pick a number between 1 and 8)")
     if Height >= 1 and Height <= 8:
         break
 
