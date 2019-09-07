@@ -1,1 +1,1 @@
-https://docs.cs50.net/2018/x/psets/6/pset6.html
+https://docs.cs50.net/2019/x/psets/6/index.html
